@@ -16,19 +16,24 @@ public class Blumenladen {
      */
     public static void main(String[] args) {
 
-        // Deklaration und Initialisierung von Konstanten
-        final int preisRose = 249;     // 2,49€
-        final int preisTulpe = 166;    // 1,66€
-        final int preisNelke = 99;     // 0,99€
-        final char wertumrechner = 100;
-        final char euroSymbol = '€';
+        // Deklaration der Konstante mit dem primitiven Fließkommaliteral Double & Initialisierung mit den Preisen der jeweiligen Blumensorte
+        final double preisRose = 2.49;
+        final double preisTulpe = 1.66;
+        final double preisNelke = 0.99;
 
-        // Deklaration und Initialisierung von Variablen
+        // Deklaration der Konstante mit dem primitiven Datentyp Char & Initialisierung mit der Unicodezeichenkette zur Darstellung des Euro Zeichens
+        final char euroSymbol = '\u20AC';
+
+        // Deklaration der Variable mit dem primitiven Ganzahlendatentyp Int & Initialisierung mit dem Wert 0
         int anzahlRosen = 0;
         int anzahlTulpen = 0;
         int anzahlNelken = 0;
         
-        // Keine Beschreibung an dieser Stelle notwendig
+        /* 
+        Die Eingabe der Anzahl der verschiedenen Blumensorten soll vom Nutzenden* selbst erfolgen
+        Dazu wird die Eingabe über eine Tastatur benötigt
+        Keine weitere Beschreibung an dieser Stelle erfordert
+        */ 
         Scanner tastatur;
         tastatur = new Scanner(System.in);
         tastatur.useDelimiter(System.lineSeparator());
@@ -54,21 +59,23 @@ public class Blumenladen {
         // Danach wird der Wert der Variable 'anzahlTulpen' zugewiesen
         anzahlNelken = tastatur.nextInt();
 
-        // Kalkulation des Gesamtpreises der einzelnen Blumensorten in Cent
-        int cRose = preisRose * anzahlRosen;
-        int cTulpe = preisTulpe * anzahlTulpen;
-        int cNelke = preisNelke * anzahlNelken;
+        // Kalkulation des Gesamtpreises der einzelnen Blumensorten
+        double cRose = preisRose * anzahlRosen;
+        double cTulpe = preisTulpe * anzahlTulpen;
+        double cNelke = preisNelke * anzahlNelken;
 
-        // Gesamtpreis wird in eine Dezimazahl mit zwei Kommastellen umgewandelt
-        int eRose = cRose / wertumrechner;
-        int eTulpe = cTulpe / wertumrechner;
-        int eNelke = cNelke / wertumrechner;
-        int gesamtpreis = (cRose + cTulpe + cNelke) / wertumrechner;
+        // Kalkulation des Gesampreises
+        double gesamtpreis = cRose + cTulpe + cNelke;
 
-        // Ausgabe der Preisaufstellung der einzelnen Blumensorten und der Gesamtkosten im Terminal
-        System.out.println("Anzahl Rosen: " + anzahlRosen + " für " + eRose + euroSymbol);
-        System.out.println("Anzahl Tulpen: " + anzahlTulpen + " für " + eTulpe + euroSymbol);
-        System.out.println("Anzahl Nelken: " + anzahlNelken + " für " + eNelke + euroSymbol);
-        System.out.println("Gesamtpreis: " + gesamtpreis + "€");
+        /* 
+        Ausgabe der Preisaufstellung der einzelnen Blumensorten und der Gesamtkosten im Terminal
+        Die Ergebnisse werden durch eine Formatierung auf zwei Nachkommastellen gerundet. Das Prozentzeichen gilt als 
+        Alias, dieser wird mit einem '.' von der Präzision (in diesem Fall 2) getrennt. Das 'f' gibt an, das es sich bei
+        dem Wert um einen Float handelt. In unserem Fall wird aus dem Double ein Float konvertiert.
+        */
+        System.out.println("Anzahl Rosen: " + anzahlRosen + " für " + String.format("%.2f", cRose) + euroSymbol);
+        System.out.println("Anzahl Tulpen: " + anzahlTulpen + " für " + String.format("%.2f", cTulpe) + euroSymbol);
+        System.out.println("Anzahl Nelken: " + anzahlNelken + " für " + String.format("%.2f", cNelke) + euroSymbol);
+        System.out.println("Gesamtpreis: " + String.format("%.2f", gesamtpreis) + euroSymbol);
     }
 }
